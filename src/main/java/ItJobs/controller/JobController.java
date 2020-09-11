@@ -25,18 +25,6 @@ public class JobController {
         this.jobService = jobService;
     }
 
-//    @GetMapping
-//    public String jobSite(ModelMap map) {
-//        map.put("cities", cityDAO.getCities());
-//        map.put("tags", tagDAO.getTags());
-//        return "index";
-//    }
-
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
-
     @GetMapping
     public String jobSite(ModelMap map
             , @RequestParam(required = false) String newCity
@@ -57,11 +45,9 @@ public class JobController {
         }
 
         if (newCity.equals("")) {
-
             map.put("myCity", " 'Poland',");
             map.put("myTag", " '" + newTag + "',");
             List<Job> jobs = jobService.getJobs("", newTag);
-
             if (jobs.isEmpty()) {
                 map.put("data", "noResults");
             } else {
@@ -69,7 +55,6 @@ public class JobController {
                 map.put("data", "data");
             }
             return "index";
-
         }
 
         if (newCity != null && newTag != null) {
@@ -78,7 +63,6 @@ public class JobController {
             map.put("myCity", " '" + newCity + "',");
             map.put("myTag", " '" + newTag + "',");
             List<Job> jobs = jobService.getJobs(newCity, newTag);
-
             if (jobs.isEmpty()) {
                 map.put("data", "noResults");
             } else {
@@ -86,9 +70,6 @@ public class JobController {
                 map.put("data", "data");
             }
         }
-
         return "index";
     }
-
-
 }

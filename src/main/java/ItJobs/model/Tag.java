@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Tag {
+
     private String tagCode;
     private String tagName;
 }

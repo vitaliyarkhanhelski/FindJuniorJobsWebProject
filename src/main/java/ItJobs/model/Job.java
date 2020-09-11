@@ -10,5 +10,4 @@ public class Job {
     private String name;
     private String url;
 
-
 }
