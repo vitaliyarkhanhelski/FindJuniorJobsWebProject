@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs Junior</title>
+
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="bg"></div>
+<div>
+
+    <div>
+        <div class="center">
+            <h1>Job Search Engine for Junior in Poland</h1>
+        </div>
+
+        <hr>
+        <form action="/">
+            <div class="custom-select">
+                <div class="list">
+                    <div>
+                        <h2>Select City:</h2>
+                    </div>
+
+                    <div class="custom-select">
+                        <select class="ff" name="newCity">
+                            <option value="">Select City</option>
+                            <option th:each="city : ${cities}"
+                                    th:value="${city.countryCode}"
+                                    th:utext="${city.countryName}"/>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="list">
+                    <div>
+                        <h2>Select Junior Position:</h2>
+                    </div>
+
+                    <div class="custom-select">
+                        <select class="ff" name="newTag">
+                            <option value="">Select Position</option>
+                            <option th:each="tag : ${tags}"
+                                    th:value="${tag.tagCode}"
+                                    th:utext="${tag.tagName}"/>
+                        </select>
+                    </div>
+                </div>
+                <div class="center3">
+                    <input class="button" type="submit" value="Send">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+    <hr>
+
+    <div class="center2">
+        <h1 th:if="${data==null}">Search results:</h1>
+
+        <h1 th:if="${data=='provide'}">No position provided!</h1>
+
+        <h1 th:if="${data=='noResults'}">No results unfortunately!</h1>
+
+        <h1 th:if="${data=='data'}">Search results for the query
+            <span th:text="${myCity}"/>
+            <span th:text="${myTag}"/> 'junior'
+            :</h1>
+    </div>
+
+
+
+    <ol class="ff" th:if="${jobs != null}">
+
+        <li th:each="job : ${jobs}"><a
+            th:href="${job.url}"
+            th:text="${job.name}"/></li>
+
+<!--        <li>-->
+<!--            <a href="https://www.pracuj.pl/praca/junior-java-developer-consultant-warszawa,oferta,1000411078">-->
+<!--                Junior Java Developer (Consultant)</a>-->
+<!--        </li>-->
+
+<!--        <li>-->
+<!--            <a id="jstext" href="http://google.com">-->
+
+<!--            </a>-->
+<!--        </li>-->
+    </ol>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
